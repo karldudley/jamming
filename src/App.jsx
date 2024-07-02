@@ -1,35 +1,65 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.js
+import React, { useState } from 'react';
+import './App.css';
+import SearchBar from './components/SearchBar';
+import SearchResults from './components/SearchResults';
+import Playlist from './components/Playlist';
+import Spotify from './util/Spotify';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+    const [searchResults, setSearchResults] = useState([]);
+    const [playlistName, setPlaylistName] = useState('New Playlist');
+    const [playlistTracks, setPlaylistTracks] = useState([]);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    const addTrack = (track) => {
+        if (!playlistTracks.find((t) => t.id === track.id)) {
+            setPlaylistTracks([...playlistTracks, track]);
+        }
+    };
 
-export default App
+    const removeTrack = (track) => {
+        setPlaylistTracks(playlistTracks.filter((t) => t.id !== track.id));
+    };
+
+    const updatePlaylistName = (name) => {
+        setPlaylistName(name);
+    };
+
+    const savePlaylist = () => {
+        const trackURIs = playlistTracks.map((track) => track.uri);
+        Spotify.savePlaylist(playlistName, trackURIs).then(() => {
+            setPlaylistName('New Playlist');
+            setPlaylistTracks([]);
+        });
+    };
+
+    const search = (term) => {
+        Spotify.search(term).then((results) => setSearchResults(results));
+    };
+
+    return (
+        <div>
+            <h1>
+                Ja<span className="highlight">mmm</span>ing
+            </h1>
+            <div className="App">
+                <SearchBar onSearch={search} />
+                <div className="App-playlist">
+                    <SearchResults
+                        searchResults={searchResults}
+                        onAdd={addTrack}
+                    />
+                    <Playlist
+                        playlistName={playlistName}
+                        playlistTracks={playlistTracks}
+                        onRemove={removeTrack}
+                        onNameChange={updatePlaylistName}
+                        onSave={savePlaylist}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default App;

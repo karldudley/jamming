@@ -1,42 +1,134 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* src/App.css */
+
+body {
+    background-color: #191414;
+    color: #1db954;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+h1 {
+    font-size: 3em;
+    margin-top: 20px;
+    color: #1db954;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.highlight {
+    color: #1db954;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
 }
 
-.card {
-  padding: 2em;
+.App-playlist {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    max-width: 1200px;
+    margin-top: 20px;
 }
 
-.read-the-docs {
-  color: #888;
+.SearchBar {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.SearchBar input {
+    width: 300px;
+    padding: 10px;
+    border: 2px solid #1db954;
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color: #282828;
+    color: #fff;
+}
+
+.SearchBar button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1db954;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.SearchBar button:hover {
+    background-color: #1ed760;
+}
+
+.SearchResults,
+.Playlist {
+    width: 45%;
+    background-color: #282828;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.TrackList {
+    margin-top: 20px;
+}
+
+.Track {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #333;
+    border-radius: 5px;
+}
+
+.Track-information {
+    flex-grow: 1;
+    text-align: left;
+    color: #fff;
+}
+
+.Track-action {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1db954;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.Track-action:hover {
+    background-color: #1ed760;
+}
+
+.Playlist input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #1db954;
+    border-radius: 5px;
+    background-color: #282828;
+    color: #fff;
+}
+
+.Playlist-save {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1db954;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.Playlist-save:hover {
+    background-color: #1ed760;
 }
