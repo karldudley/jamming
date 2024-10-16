@@ -1,6 +1,6 @@
 // src/util/Spotify.js
 const clientId = process.env.REACT_APP_CLIENT_ID; // Replace with your Spotify Client ID
-const redirectUri = 'http://localhost:5173/callback'; // Replace with your redirect URI
+const redirectUri = 'https://jamming-kd.vercel.app/callback'; // Replace with your redirect URI
 
 let accessToken;
 
